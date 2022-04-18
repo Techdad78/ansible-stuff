@@ -1,0 +1,11 @@
+- hosts: all
+
+tasks:
+  - name: Create Sudo File for User
+    lineinfile:
+      path: /etc/sudoers.d/{{ accessuser }}
+      line: "{{ accessuser }} ALL:(ALL) NOPASSWD: ALL"
+      state: present
+      mode: 0440
+      create: yes
+    become: yes
